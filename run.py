@@ -7,6 +7,7 @@ from keras.optimizers import Adam
 
 from rl.agents.dqn import DQNAgent
 from rl.policy import EpsGreedyQPolicy
+from rl.policy import GreedyQPolicy
 from rl.memory import SequentialMemory
 
 #Then set the relevant variables
@@ -28,7 +29,7 @@ model.add(Activation('linear'))
 print(model.summary())
 # Next, we configure and compile our agent. We set our policy as Epsilon Greedy and we also set our memory as Sequential Memory because we want to store the result of actions we performed and the rewards we get for each action.
 
-policy = EpsGreedyQPolicy()
+policy = GreedyQPolicy()
 memory = SequentialMemory(limit=50000, window_length=1)
 dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, nb_steps_warmup=10,
 target_model_update=1e-2, policy=policy)
